@@ -78,6 +78,8 @@ LGSideMenuSwipeGestureRange LGSideMenuSwipeGestureRangeMake(CGFloat left, CGFloa
 @property (strong, nonatomic, readwrite) LGSideMenuView *leftViewContainer;
 @property (strong, nonatomic, readwrite) LGSideMenuView *rightViewContainer;
 
+@property (assign, nonatomic) BOOL isViewsHierarchyValidate;
+
 @property (assign, nonatomic, readwrite, getter=isLeftViewShowing)  BOOL leftViewShowing;
 @property (assign, nonatomic, readwrite, getter=isRightViewShowing) BOOL rightViewShowing;
 
@@ -523,8 +525,11 @@ rightViewBackgroundImageFinalScale = _rightViewBackgroundImageFinalScale;
     [self leftViewsValidate];
     [self rightViewsValidate];
 
-    [self viewsHierarchyValidate];
-
+    if(!_isViewsHierarchyValidate) {
+        _isViewsHierarchyValidate = YES;
+        [self viewsHierarchyValidate];
+    }
+    
     [self rootViewsFramesValidate];
     [self leftViewsFramesValidate];
     [self rightViewsFramesValidate];
